@@ -38,7 +38,6 @@ var agregateBandsIndexSoil = function(img){
     return img.addBands(soilImg) ;
 }
 
-
 var Burned_Area_Index_Mod_SWIR1 = function(img){
     var baimsImg = img.expression(
         "float(1/ ((0.06 - b('nir'))**2 + (0.1 - b('swir1'))**2))").rename(['baims']);     
@@ -165,12 +164,7 @@ imgLandsat = Enhanced_Vegetation_Index(ee.Image(imgLandsat))
 imgLandsat = agregateBandsIndexSoil(ee.Image(imgLandsat))
 imgLandsat = IndiceIndicadorAgua(ee.Image(imgLandsat))
 
-
-
-
 imgLandsat = imgLandsat.addBands(difNBR).addBands(difNIR).addBands(difMIRBI).addBands(difNDVI) 
-
-
 var columnaTraining = ['dmirbi', 'dnbr', 'dndvi', 'dnirr', 'evi', 'mirbi', 'nbr', 'nir', 'swir1', 'red', 'savi']
 
 var pmtRF = {        
@@ -197,7 +191,6 @@ Map.addLayer(imgLandsatl, vistoa,'l5', true);
 
 Map.addLayer(imgLandsat , vis.vis_l8, "l8")
 Map.addLayer(mancha.selfMask(), vis.mancha, 'mancha')
-
 Map.addLayer(imgClass.selfMask(), vis.classe, 'clasF')
 
 /*
